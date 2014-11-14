@@ -1,7 +1,7 @@
 #
 # Haproxy Dockerfile
 #
-# https://github.com/dockerfile/haproxy
+# https://github.com/llamashoes/haproxy-sshd
 #
 
 # Pull base image.
@@ -21,6 +21,7 @@ rm -rf /var/lib/apt/lists/*
 RUN mkdir -p /var/run/sshd /var/log/supervisor
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+# Set root password - will want to change this
 RUN echo 'root:changeme' | chpasswd
 RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
@@ -37,9 +38,6 @@ WORKDIR /etc/haproxy
 
 # Start supervisord
 CMD ["supervisord", "-c", "/etc/supervisor/supervisord.conf"]
-
-# Define default command.
-# CMD ["bash", "/haproxy-start"]
 
 # Expose ports.
 EXPOSE 80
