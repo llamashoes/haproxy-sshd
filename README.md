@@ -22,13 +22,13 @@ It was forked to use supervisord to start haproxy and sshd.
 
 ### Usage
 
-    docker run -d -p 80:80 -p 22:22 llamashoes/haproxy
+    docker run -d -p 80:80 -p 22 llamashoes/haproxy
 
 
 
 #### Customizing Haproxy
 
-    docker run -d -p 80:80 -v <override-dir>:/haproxy-override llamashoes/haproxy
+    docker run -d -p 80:80 -p 22 -v <override-dir>:/haproxy-override llamashoes/haproxy
 
 where `<override-dir>` is an absolute path of a directory that could contain:
 
