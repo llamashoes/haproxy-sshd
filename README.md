@@ -1,7 +1,9 @@
-## Haproxy Dockerfile
+## Haproxy /SSHD Dockerfile
 
 
-This repository contains **Dockerfile** of [Haproxy](http://haproxy.1wt.eu/) for [Docker](https://www.docker.com/)'s [automated build](https://registry.hub.docker.com/u/dockerfile/haproxy/) published to the public [Docker Hub Registry](https://registry.hub.docker.com/).
+This repository contains a fork of **Dockerfile** of [Haproxy](http://haproxy.1wt.eu/) for [Docker](https://www.docker.com/)'s [automated build](https://registry.hub.docker.com/u/dockerfile/haproxy/) published to the public [Docker Hub Registry](https://registry.hub.docker.com/).
+
+It was forked to use supervisord to start haproxy and sshd.
 
 
 ### Base Docker Image
@@ -13,18 +15,20 @@ This repository contains **Dockerfile** of [Haproxy](http://haproxy.1wt.eu/) for
 
 1. Install [Docker](https://www.docker.com/).
 
-2. Download [automated build](https://registry.hub.docker.com/u/dockerfile/haproxy/) from public [Docker Hub Registry](https://registry.hub.docker.com/): `docker pull dockerfile/haproxy`
+2. Download [automated build](https://registry.hub.docker.com/u/llamashoes/haproxy/) from public [Docker Hub Registry](https://registry.hub.docker.com/): `docker pull llamashoes/haproxy`
 
-   (alternatively, you can build an image from Dockerfile: `docker build -t="dockerfile/haproxy" github.com/dockerfile/haproxy`)
+   (alternatively, you can build an image from Dockerfile: `docker build -t="llamashoes/haproxy" github.com/llamashoes/haproxy`)
 
 
 ### Usage
 
-    docker run -d -p 80:80 dockerfile/haproxy
+    docker run -d -p 80:80 -p 22:22 llamashoes/haproxy
+
+
 
 #### Customizing Haproxy
 
-    docker run -d -p 80:80 -v <override-dir>:/haproxy-override dockerfile/haproxy
+    docker run -d -p 80:80 -v <override-dir>:/haproxy-override llamashoes/haproxy
 
 where `<override-dir>` is an absolute path of a directory that could contain:
 
