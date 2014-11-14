@@ -24,6 +24,8 @@ It was forked to use supervisord to start haproxy and sshd.
 
     docker run -d -p 80:80 -p 22 llamashoes/haproxy-sshd
 
+You can then run `docker ps` and check the host port that was forwarded to port 22, then ssh into the container on
+that port using the username:password set in the Dockerfile (default is root:changeme).
 
 
 #### Customizing Haproxy and log dir
